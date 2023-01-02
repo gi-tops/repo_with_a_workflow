@@ -1,5 +1,1 @@
-# workflow file my-workflow has limited restrictions on update rights
-.github/workflows/my-workflow @collinmcneese
-
-# alternatively, protect all of the workflow files
-.github/workflows/ @collinmcneese
+* @collinmcneese
