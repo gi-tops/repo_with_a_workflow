@@ -1,0 +1,11 @@
+name: local-checker
+
+on:
+  pull_request:
+
+jobs:
+  checker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check
+        run: echo "this is content"
