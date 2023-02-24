@@ -1,0 +1,9 @@
+name: reusable-call-echo2
+
+on:
+  workflow_dispatch:
+
+jobs:
+  call-echo2:
+    uses: collinmcneese-test/.github/.github/workflows/echo2.yml@v1
+    
