@@ -1,4 +1,4 @@
-name: reusable-call-echo
+name: reusable-call-echo-1
 
 on:
   workflow_dispatch:
@@ -6,6 +6,3 @@ on:
 jobs:
   call-echo1:
     uses: collinmcneese-test/.github/.github/workflows/echo1.yml@v1.0.0
-  call-echo2:
-    uses: collinmcneese-test/.github/.github/workflows/echo2.yml@v1
-    
