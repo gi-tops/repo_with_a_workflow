@@ -4,9 +4,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  call-echo:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: collinmcneese-test/.github/.github/workflows/echo1.yml@v1
-    - uses: collinmcneese-test/.github/.github/workflows/echo2.yml@ef6a4077dd302c286a6514c363773420f9a9cbd1
+  call-echo1:
+    uses: collinmcneese-test/.github/.github/workflows/echo1.yml@v1
+  call-echo2:
+    uses: collinmcneese-test/.github/.github/workflows/echo2.yml@ef6a4077dd302c286a6514c363773420f9a9cbd1
     
