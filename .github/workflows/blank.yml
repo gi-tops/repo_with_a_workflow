@@ -1,12 +1,12 @@
-name: failing-workflow
+name: reusable-call-echo
 
 on:
   workflow_dispatch:
 
-
 jobs:
-  fail:
+  call-echo:
     runs-on: ubuntu-latest
     steps:
-    - name: failure
-      run: exit 1
+    - uses: collinmcneese-test/.github/.github/workflows/echo1.yml@v1
+    - uses: collinmcneese-test/.github/.github/workflows/echo2.yml@ef6a4077dd302c286a6514c363773420f9a9cbd1
+    
