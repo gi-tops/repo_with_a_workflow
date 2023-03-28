@@ -2,6 +2,7 @@ name: reusable-call-echo2
 
 on:
   workflow_dispatch:
+  workflow_call:
 
 jobs:
   call-echo2:
