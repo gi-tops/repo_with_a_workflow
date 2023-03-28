@@ -1,4 +1,4 @@
-name: ":rocket: reusable-call-echo3"
+name: reusable-call-echo3
 
 on:
   workflow_dispatch:
