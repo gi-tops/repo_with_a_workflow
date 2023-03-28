@@ -6,8 +6,8 @@ on:
 
 jobs:
   echo1:
-    uses: ./.github/workflows/echo1.yml@main
+    uses: ./.github/workflows/echo1.yml
   echo2:
-    uses: ./.github/workflows/echo2.yml@main
+    uses: ./.github/workflows/echo2.yml
   echo3:
-    uses: ./.github/workflows/echo3.yml@main
+    uses: ./.github/workflows/echo3.yml
