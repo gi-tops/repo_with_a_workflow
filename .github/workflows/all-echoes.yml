@@ -1,0 +1,13 @@
+name: all-echoes
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  echo1:
+    uses: ./.github/workflows/echo1.yml@main
+  echo2:
+    uses: ./.github/workflows/echo2.yml@main
+  echo3:
+    uses: ./.github/workflows/echo3.yml@main
