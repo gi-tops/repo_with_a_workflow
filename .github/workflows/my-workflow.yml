@@ -20,3 +20,4 @@ jobs:
     steps:
     - run: |
         echo "Message: ${{ github.event.inputs.message }} with color ${{ github.event.inputs.color }}"
+        echo $RUNNER_DIR
