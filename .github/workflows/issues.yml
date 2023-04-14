@@ -9,6 +9,9 @@ jobs:
   output:
     runs-on: ubuntu-latest
     steps:
+    - name: output
+      run: |
+        echo ${{ toJSON(github) }}
     - uses: actions/github-script@v6
       with:
         script: |
