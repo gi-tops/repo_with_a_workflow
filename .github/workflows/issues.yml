@@ -1,0 +1,15 @@
+name: issues-test
+
+on:
+  issues:
+    types: [labeled, edited]
+
+jobs:
+  # use github-script to output the github context
+  output:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/github-script@v6
+      with:
+        script: |
+          console.log(github.context.payload.issue)
