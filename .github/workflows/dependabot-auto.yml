@@ -11,12 +11,24 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
+      - name: access check
+        id: access-check
+        uses: actions/github-script@v3
+        # Check if able to approve PRs via GitHub API
+        # Return true if able to approve, false otherwise
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { data: { permissions } } = await github.repos.get({ owner: context.repo.owner, repo: context.repo.repo });
+            return permissions.pull ? permissions.pull : false;
       - name: Dependabot metadata
+        if: steps.access-check.outputs.result == 'true'
         id: metadata
         uses: dependabot/fetch-metadata@v1
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Approve a PR
+        if: steps.access-check.outputs.result == 'true'
         run: gh pr review --approve "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
