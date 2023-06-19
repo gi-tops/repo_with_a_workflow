@@ -21,6 +21,18 @@ jobs:
           script: |
             const { data: { permissions } } = await github.repos.get({ owner: context.repo.owner, repo: context.repo.repo });
             return permissions.pull ? permissions.pull : false;
+      - name: Add comment if no access
+        if: steps.access-check.outputs.result == 'false'
+        uses: actions/github-script@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'GitHub Actions does not have permission to approve PRs. See [Docs](https://docs.github.com/en/enterprise-cloud@latest/organizations/managing-organization-settings/disabling-or-limiting-github-actions-for-your-organization#preventing-github-actions-from-creating-or-approving-pull-requests)'
+            })
       - name: Dependabot metadata
         if: steps.access-check.outputs.result == 'true'
         id: metadata
