@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: access check
         id: access-check
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6
         # Check if able to approve PRs via GitHub API
         # Return true if able to approve, false otherwise
         with:
@@ -23,7 +23,7 @@ jobs:
             return permissions.pull ? permissions.pull : false;
       - name: Add comment if no access
         if: steps.access-check.outputs.result == 'false'
-        uses: actions/github-script@v3
+        uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
