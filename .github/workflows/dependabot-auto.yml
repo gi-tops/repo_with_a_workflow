@@ -21,7 +21,7 @@ jobs:
           script: |
             let { data: { permissions } } = await github.request('GET /repos/{owner}/{repo}', {
               owner: context.repo.owner,
-              repo: repo: context.repo.repo,
+              repo: context.repo.repo,
             });
             return (permissions && permissions.pull) ? permissions.pull : false;
       - name: Add comment if no access
