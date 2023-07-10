@@ -19,7 +19,10 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const { data: { permissions } } = await github.repos.get({ owner: context.repo.owner, repo: context.repo.repo });
+            let { data: { permissions } } = await github.request('GET /repos/{owner}/{repo}', {
+              owner: context.repo.owner,
+              repo: repo: context.repo.repo,
+            });
             return (permissions && permissions.pull) ? permissions.pull : false;
       - name: Add comment if no access
         if: steps.access-check.outputs.result == 'false'
