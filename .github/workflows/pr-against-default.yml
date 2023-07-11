@@ -9,14 +9,14 @@ env:
 
 jobs:
   default-branch-pr:
-    if: env.PR_TARGET_BRANCH == env.REPO_DEFAULT_BRANCH
+    if: github.env.PR_TARGET_BRANCH == github.env.REPO_DEFAULT_BRANCH
     runs-on: ubuntu-latest
     steps:
     - name: PR to Default Branch
       run: |
         echo "This is a PR to Default Branch" >> $GITHUB_STEP_SUMMARY
   not-default-branch-pr:
-    if: env.PR_TARGET_BRANCH != env.REPO_DEFAULT_BRANCH
+    if: github.env.PR_TARGET_BRANCH != github.env.REPO_DEFAULT_BRANCH
     runs-on: ubuntu-latest
     steps:
     - name: PR to Non-Default Branch
