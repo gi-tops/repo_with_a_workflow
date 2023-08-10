@@ -16,9 +16,11 @@ jobs:
     # Render in markdown table format, and set as output for use in next step
     - id: parse-rate-limit
       uses: actions/github-script@v6
+      env:
+        RATE_LIMIT_RESULT: ${{ steps.fetch-rate-limit.outputs.result }}
       with:
         script: |
-          let rateLimit = ${{ fromJson(steps.fetch-rate-limit.outputs.result) }};
+          let rateLimit = JSON.parse(process.env.RATE_LIMIT_RESULT);
           console.log(rateLimit)
           // Create the header row
           let table = "| Resource | Limit | Remaining | Reset |\n";
