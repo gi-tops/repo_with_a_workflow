@@ -1,0 +1,10 @@
+name: rate-limit
+
+on:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo $(gh api rate_limit) | jq >> $GITHUB_STEP_SUMMARY
