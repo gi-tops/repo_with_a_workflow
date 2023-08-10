@@ -2,6 +2,7 @@ name: rate-limit
 
 on:
   workflow_dispatch:
+  push:
 
 jobs:
   check:
@@ -17,7 +18,7 @@ jobs:
       uses: actions/github-script@v6
       with:
         script: |
-          let rateLimit = JSON.parse(process.env.GITHUB_STEP_OUTPUT);
+          let rateLimit = JSON.parse(${{ steps.fetch-rate-limit.outputs.result }});
           // Create the header row
           let table = "| Resource | Limit | Remaining | Reset |\n";
           table += "| --- | --- | --- | --- |\n";
