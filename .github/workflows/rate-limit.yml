@@ -5,7 +5,7 @@ on:
   push:
 
 jobs:
-  check:
+  check-rate-limit:
     env:
       GH_TOKEN: ${{ github.token }}
     runs-on: ubuntu-latest
