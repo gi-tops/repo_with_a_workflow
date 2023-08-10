@@ -11,14 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - id: fetch-rate-limit
-      run: echo "result=$(gh api rate_limit)" | jq >> "${GITHUB_OUTPUT}"
+      run: echo "result=$(gh api rate_limit)" >> "${GITHUB_OUTPUT}"
     # Parse rate limit output from fetch-rate-limit step
     # Render in markdown table format, and set as output for use in next step
     - id: parse-rate-limit
       uses: actions/github-script@v6
       with:
         script: |
-          let rateLimit = JSON.parse(${{ steps.fetch-rate-limit.outputs.result }});
+          let rateLimit = JSON.parse(${{ fromJson(steps.fetch-rate-limit.outputs.result) }});
           // Create the header row
           let table = "| Resource | Limit | Remaining | Reset |\n";
           table += "| --- | --- | --- | --- |\n";
