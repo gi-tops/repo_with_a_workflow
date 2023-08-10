@@ -19,6 +19,7 @@ jobs:
       with:
         script: |
           let rateLimit = ${{ fromJson(steps.fetch-rate-limit.outputs.result) }};
+          console.log(rateLimit)
           // Create the header row
           let table = "| Resource | Limit | Remaining | Reset |\n";
           table += "| --- | --- | --- | --- |\n";
