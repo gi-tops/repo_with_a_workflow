@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-       echo ${{ github.job }}
-       echo ${{ github }}
+       echo ${{ fromJson(github.job) }}
+       echo ${{ fromJson(github) }}
   echo1:
     uses: ./.github/workflows/echo1.yml
   echo2:
