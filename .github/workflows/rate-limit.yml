@@ -27,7 +27,7 @@ jobs:
           table += "| --- | --- | --- | --- |\n";
           // Create a row for each resource
           for (let resource in rateLimit.resources) {
-            table += `| ${resource} | ${rateLimit.resources[resource].limit} | ${rateLimit.resources[resource].remaining} | ${Date.(rateLimit.resources[resource].reset)} |\n`;
+            table += `| ${resource} | ${rateLimit.resources[resource].limit} | ${rateLimit.resources[resource].remaining} | ${rateLimit.resources[resource].reset} |\n`;
           }
           // Set the output
           return table;
