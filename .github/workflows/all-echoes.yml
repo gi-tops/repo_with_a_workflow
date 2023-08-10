@@ -5,6 +5,12 @@ on:
   workflow_dispatch:
 
 jobs:
+  context:
+    runs-on: ubuntu-latest
+    steps:
+    - run: |
+       echo ${{ github.job }}
+       echo ${{ github }}
   echo1:
     uses: ./.github/workflows/echo1.yml
   echo2:
