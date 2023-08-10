@@ -9,4 +9,24 @@ jobs:
       GH_TOKEN: ${{ github.token }}
     runs-on: ubuntu-latest
     steps:
-    - run: echo $(gh api rate_limit) | jq >> $GITHUB_STEP_SUMMARY
+    - id: fetch-rate-limit
+      run: echo "result=$(gh api rate_limit)" >> "${GITHUB_OUTPUT}"
+    # Parse rate limit output from fetch-rate-limit step
+    # Render in markdown table format, and set as output for use in next step
+    - id: parse-rate-limit
+      uses: actions/github-script@v6
+      with:
+        script: |
+          let rateLimit = JSON.parse(process.env.GITHUB_STEP_OUTPUT);
+          // Create the header row
+          let table = "| Resource | Limit | Remaining | Reset |\n";
+          table += "| --- | --- | --- | --- |\n";
+          // Create a row for each resource
+          for (let resource in rateLimit.resources) {
+            table += `| ${resource} | ${rateLimit.resources[resource].limit} | ${rateLimit.resources[resource].remaining} | ${rateLimit.resources[resource].reset} |\n`;
+          }
+          // Set the output
+          return table;
+        result-encoding: string
+    - id: render
+      run: echo "${{ steps.parse-rate-limit.outputs.result }}" >> "${GITHUB_STEP_SUMMARY}"
