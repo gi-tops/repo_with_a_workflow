@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - id: fetch-rate-limit
-      run: echo "result=$(gh api rate_limit)" >> "${GITHUB_OUTPUT}"
+      run: echo "result=$(gh api rate_limit)" | jq >> "${GITHUB_OUTPUT}"
     # Parse rate limit output from fetch-rate-limit step
     # Render in markdown table format, and set as output for use in next step
     - id: parse-rate-limit
