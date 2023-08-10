@@ -18,7 +18,7 @@ jobs:
       uses: actions/github-script@v6
       with:
         script: |
-          let rateLimit = JSON.parse(${{ fromJson(steps.fetch-rate-limit.outputs.result) }});
+          let rateLimit = ${{ fromJson(steps.fetch-rate-limit.outputs.result) }};
           // Create the header row
           let table = "| Resource | Limit | Remaining | Reset |\n";
           table += "| --- | --- | --- | --- |\n";
