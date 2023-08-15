@@ -1,0 +1,12 @@
+name: issue-labels
+
+on:
+  issues:
+      types: [labeled]
+
+jobs:
+  labeled:
+    runs-on: ubuntu-latest
+    if: contains(github.event.issue.labels.*.name, 'bug')
+    steps:
+    - run: echo ${{ fromJson(github.event.issue.labels) }}
