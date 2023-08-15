@@ -1,0 +1,14 @@
+name: issue-workflow-called
+
+on:
+  workflow_call:
+
+jobs:
+  issue-workflow-called:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            console.log(${{ toJson(github.event) }})
+            console.log(${{ toJson(github.context) }})
