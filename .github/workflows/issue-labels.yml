@@ -10,4 +10,4 @@ jobs:
     if: contains(github.event.issue.labels.*.name, 'bug')
     steps:
     - run: |
-        echo ${{ toJSON(github.event.issue.labels) }}
+        echo '${{ toJSON(github.event.issue.labels) }}'
