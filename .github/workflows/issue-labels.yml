@@ -9,4 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     if: contains(github.event.issue.labels.*.name, 'bug')
     steps:
-    - run: echo ${{ fromJson(github.event.issue.labels) }}
+    - run: |
+        echo ${{ toJSON(github.event.issue.labels) }}
