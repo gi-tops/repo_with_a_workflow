@@ -1,0 +1,23 @@
+name: workflow-metrics
+on:
+  workflow_dispatch:
+
+jobs:
+  evaluate-actions-consumption:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Date Set
+        id: date-set
+        run: |
+          echo "start_date=$(date --date '7 days ago' +'%Y-%m-%d')" >> "${GITHUB_OUTPUT}"
+          echo "end_date=$(date --date '7 days ago' +'%Y-%m-%d')" >> "${GITHUB_OUTPUT}"
+      - name: Call workflow-runs action
+        uses: kittychiu/workflow-metrics@v0.4.7
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          OWNER_NAME: ${{ github.event.repository.owner }}
+          REPO_NAME: ${{ github.event.repository.name }}
+          START_DATE: ${{ steps.date-set.outputs.start_date }}
+          END_DATE: ${{ steps.date-set.outputs.end_date }}
