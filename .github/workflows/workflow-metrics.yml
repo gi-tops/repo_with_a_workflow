@@ -12,7 +12,7 @@ jobs:
         id: date-set
         run: |
           echo "start_date=$(date --date '7 days ago' +'%Y-%m-%d')" >> "${GITHUB_OUTPUT}"
-          echo "end_date=$(date --date '7 days ago' +'%Y-%m-%d')" >> "${GITHUB_OUTPUT}"
+          echo "end_date=$(date +'%Y-%m-%d')" >> "${GITHUB_OUTPUT}"
       - name: Call workflow-runs action
         uses: kittychiu/workflow-metrics@v0.4.7
         env:
