@@ -17,7 +17,7 @@ jobs:
         uses: kittychiu/workflow-metrics@v0.4.7
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          OWNER_NAME: ${{ github.event.repository.owner }}
+          OWNER_NAME: ${{ github.event.repository.owner.login }}
           REPO_NAME: ${{ github.event.repository.name }}
           START_DATE: ${{ steps.date-set.outputs.start_date }}
           END_DATE: ${{ steps.date-set.outputs.end_date }}
